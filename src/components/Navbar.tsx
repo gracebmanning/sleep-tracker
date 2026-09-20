@@ -21,12 +21,12 @@ export default function Navbar() {
                         to={link.href}
                         end={link.href === "/"}
                         className={({ isActive }) =>
-                            `flex justify-center items-center w-8 h-8 p-2 rounded-full text-foreground transition-colors ${isActive ? "opacity-100 bg-bg-fg-blend" : "opacity-75 bg-transparent"}`
+                            `flex justify-center items-center w-12 h-12 p-1 rounded-full text-foreground transition-colors ${isActive ? "opacity-100 bg-bg-fg-blend" : "opacity-75 bg-transparent hover:opacity-85 hover:bg-bg-fg-blend/30"}`
                         }
                         aria-label={link.label}
                         aria-current={current === link.href ? "page" : "false"}
                     >
-                        <Icon weight="regular" />
+                        <Icon weight="regular" className="w-6 h-6" />
                     </NavLink>
                 );
             })}
