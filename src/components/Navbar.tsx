@@ -12,7 +12,7 @@ const links = [
 export default function Navbar() {
     const current = window.location.pathname;
     return (
-        <nav className="site-navbar">
+        <nav className="w-full max-w-(--max-width) mx-auto my-0 fixed bottom-0 left-0 right-0 flex justify-around items-center h-16 bg-background border-t border-t-foreground">
             {links.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -21,7 +21,7 @@ export default function Navbar() {
                         to={link.href}
                         end={link.href === "/"}
                         className={({ isActive }) =>
-                            `site-navbar__link ${isActive ? "site-navbar__link--active" : ""}`
+                            `flex justify-center items-center w-8 h-8 p-2 rounded-full text-foreground transition-colors ${isActive ? "opacity-100 bg-bg-fg-blend" : "opacity-75 bg-transparent"}`
                         }
                         aria-label={link.label}
                         aria-current={current === link.href ? "page" : "false"}

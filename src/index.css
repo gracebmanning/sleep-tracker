@@ -1,12 +1,14 @@
-:root {
-    --background: #fcfaf3;
-    --foreground: #191919;
-    --bg-fg-blend: #e7e6df;
-    --success: #5ea500;
-    --error: #c10007;
-    --accent-one: #4d4069;
-    --accent-two: #508991;
-    --accent-three: #9ca3db;
+@import "tailwindcss";
+
+@theme {
+    --color-background: #fcfaf3;
+    --color-foreground: #191919;
+    --color-bg-fg-blend: #e7e6df;
+    --color-success: #5ea500;
+    --color-error: #c10007;
+    --color-accent-one: #4d4069;
+    --color-accent-two: #508991;
+    --color-accent-three: #9ca3db;
 
     --max-width: 32rem;
 }
@@ -18,48 +20,11 @@ html {
 body {
     max-width: var(--max-width);
     margin: 0 auto;
-    min-height: 100dvh;
+    min-height: 95dvh;
     padding-bottom: 4.5rem;
-    background: var(--background);
-    color: var(--foreground);
+    background: var(--color-background);
+    color: var(--color-foreground);
     font-family: "Inter", sans-serif;
-}
-
-.site-navbar {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 4rem;
-    background: var(--background);
-    border-top: 1px solid var(--foreground);
-}
-
-.site-navbar__link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    padding: 0.5rem;
-    border-radius: 999px;
-    color: var(--foreground);
-    text-decoration: none;
-    font-size: 1.5rem;
-    opacity: 0.75;
-    transition:
-        opacity 0.5s ease,
-        background-color 0.5s ease;
-}
-
-.site-navbar__link--active {
-    opacity: 1;
-    background: var(--bg-fg-blend);
 }
 
 .page-container {
