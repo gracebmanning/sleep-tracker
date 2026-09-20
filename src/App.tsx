@@ -5,8 +5,19 @@ import SleepLog from "./pages/SleepLog";
 import ConsumptionLog from "./pages/ConsumptionLog";
 import IncidentsLog from "./pages/IncidentsLog";
 import User from "./pages/User";
+import { LoginForm } from "./components/LoginForm";
+import { useAuth } from "./lib/AuthProvider";
 
 function Layout() {
+    const { user, loading } = useAuth();
+    if (loading) {
+        return <div className="min-h-screen bg-background" />;
+    }
+
+    if (!user) {
+        return <LoginForm />;
+    }
+
     return (
         <>
             <main>
