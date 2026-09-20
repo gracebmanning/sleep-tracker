@@ -1,6 +1,6 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/AuthProvider";
+import { useAuth } from "@/lib/use-auth";
 
 export default function User() {
     const { user, signOut } = useAuth();

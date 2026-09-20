@@ -6,7 +6,7 @@ import ConsumptionLog from "./pages/ConsumptionLog";
 import IncidentsLog from "./pages/IncidentsLog";
 import User from "./pages/User";
 import { LoginForm } from "./components/LoginForm";
-import { useAuth } from "./lib/AuthProvider";
+import { useAuth } from "./lib/use-auth";
 
 function Layout() {
     const { user, loading } = useAuth();
