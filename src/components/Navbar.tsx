@@ -21,7 +21,7 @@ export default function Navbar() {
                         to={link.href}
                         end={link.href === "/"}
                         className={({ isActive }) =>
-                            `flex justify-center items-center w-12 h-12 p-1 rounded-full text-foreground transition-colors ${isActive ? "opacity-100 bg-bg-fg-blend" : "opacity-75 bg-transparent hover:opacity-85 hover:bg-bg-fg-blend/30"}`
+                            `flex justify-center items-center w-12 h-12 p-1 rounded-full text-foreground transition-colors ${isActive ? "opacity-100 bg-accent text-accent-foreground" : "opacity-75 bg-transparent hover:opacity-85 hover:bg-accent/60"}`
                         }
                         aria-label={link.label}
                         aria-current={current === link.href ? "page" : "false"}
