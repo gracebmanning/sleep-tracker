@@ -1,44 +1,48 @@
-import * as React from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabaseClient";
-import { AuthContext } from "@/lib/auth-context";
+import { AuthContext, type AuthContextValue } from "@/lib/auth-context";
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [session, setSession] = React.useState<Session | null>(null);
-    const [loading, setLoading] = React.useState(true);
+export function AuthProvider({ children }: { children: ReactNode }) {
+    const [session, setSession] = useState<Session | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
         supabase.auth.getSession().then(({ data }) => {
             setSession(data.session);
             setLoading(false);
         });
-
-        const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, newSession) => {
             setSession(newSession);
             setLoading(false);
         });
-
-        return () => listener.subscription.unsubscribe();
+        return () => subscription.unsubscribe();
     }, []);
 
-    const signInWithOtp = React.useCallback(async (email: string) => {
-        const { error } = await supabase.auth.signInWithOtp({
-            email,
-            options: {
-                shouldCreateUser: false,
-                emailRedirectTo: window.location.origin,
+    const value = useMemo<AuthContextValue>(
+        () => ({
+            session,
+            user: session?.user ?? null,
+            loading,
+            // Emails a 6-digit code AND a backup magic link (same message).
+            signInWithOtp: async (email) => {
+                const { error } = await supabase.auth.signInWithOtp({
+                    email,
+                    options: { shouldCreateUser: false, emailRedirectTo: window.location.origin },
+                });
+                return { error };
             },
-        });
-        return { error: error?.message ?? null };
-    }, []);
-
-    const signOut = React.useCallback(async () => {
-        await supabase.auth.signOut();
-    }, []);
-
-    const value = React.useMemo(
-        () => ({ session, user: session?.user ?? null, loading, signInWithOtp, signOut }),
-        [session, loading, signInWithOtp, signOut],
+            verifyOtp: async (email, token) => {
+                const { error } = await supabase.auth.verifyOtp({ email, token, type: "email" });
+                return { error };
+            },
+            signOut: async () => {
+                await supabase.auth.signOut();
+            },
+        }),
+        [session, loading],
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
