@@ -53,6 +53,7 @@ create table consumption_items (
   abv_percent numeric check (abv_percent >= 0 and abv_percent <= 100),
   is_favorite boolean not null default false,
   archived boolean not null default false,
+  quick_quantity numeric not null default 1 check (quick_quantity > 0),
   unique (user_id, name),
   check ((volume_ml is null) = (abv_percent is null))
 );
@@ -89,7 +90,6 @@ create table sleep_sessions (
   notes text,
   check (woke_up is null or woke_up > sleep_start),
   check ((kind = 'night') = (night_of is not null)),
-  unique (user_id, night_of),
   -- no two sessions may overlap (an open session extends forever)
   exclude using gist (user_id with =, tsrange(sleep_start, woke_up) with &&)
 );

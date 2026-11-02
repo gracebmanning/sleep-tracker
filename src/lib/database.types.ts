@@ -81,6 +81,7 @@ export type Database = {
           id: string
           is_favorite: boolean
           name: string
+          quick_quantity: number
           substance_id: string
           user_id: string
           volume_ml: number | null
@@ -93,6 +94,7 @@ export type Database = {
           id?: string
           is_favorite?: boolean
           name: string
+          quick_quantity?: number
           substance_id: string
           user_id?: string
           volume_ml?: number | null
@@ -105,6 +107,7 @@ export type Database = {
           id?: string
           is_favorite?: boolean
           name?: string
+          quick_quantity?: number
           substance_id?: string
           user_id?: string
           volume_ml?: number | null

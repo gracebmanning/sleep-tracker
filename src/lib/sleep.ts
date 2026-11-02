@@ -39,8 +39,7 @@ export function getSleepAids() {
 /** Turns database constraint errors into plain language. */
 export function describeError(error: { code?: string; message: string }): string {
     if (error.code === "23P01") return "That overlaps another sleep session.";
-    if (error.code === "23505")
-        return "There's already a sleep session for this night, or one is still open.";
+    if (error.code === "23505") return "A sleep session is still open.";
     if (error.code === "23514") return "Check the times: wake-up must be after the start.";
     return error.message;
 }

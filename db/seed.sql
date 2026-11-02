@@ -33,8 +33,7 @@ begin
   insert into consumption_items (user_id, substance_id, name, default_amount, volume_ml, abv_percent, is_favorite)
   select uid, s.id, v.name, coalesce(v.amt, 1), v.vol, v.abv, v.fav
   from (values
-    ('Ibuprofen', 'Ibuprofen 400 mg', 400, null, null, true),
-    ('Ibuprofen', 'Ibuprofen 200 mg', 200, null, null, false),
+    ('Ibuprofen', 'Ibuprofen 200 mg', 200, null, null, true),
     ('Caffeine', '6 oz instant coffee', 98, null, null, false),
     ('Caffeine', '8 oz instant coffee', 130, null, null, false),
     ('Caffeine', '10 oz K-cup', 100, null, null, false),
@@ -48,4 +47,5 @@ begin
     ('Alcohol', 'Other alcohol', 1, null, null, false)
   ) as v(substance, name, amt, vol, abv, fav)
   join substances s on s.user_id = uid and s.name = v.substance;
+  update consumption_items set quick_quantity = 2 where name = 'Ibuprofen 200 mg';
 end $$;

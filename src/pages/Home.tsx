@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { SessionSheet, type EditTarget } from "@/components/SessionSheet";
+import { QuickLog } from "@/components/QuickLog";
 import {
     deleteSession,
     describeError,
@@ -244,7 +245,7 @@ export default function Home() {
                     </div>
                 </>
             )}
-
+            <QuickLog showMore={session === null} />
             <SessionSheet
                 target={editTarget}
                 activities={activities}
