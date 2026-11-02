@@ -35,10 +35,10 @@ begin
   from (values
     ('Ibuprofen', 'Ibuprofen 400 mg', 400, null, null, true),
     ('Ibuprofen', 'Ibuprofen 200 mg', 200, null, null, false),
-    ('Caffeine', '6 oz instant coffee', 98, null, null, true),
+    ('Caffeine', '6 oz instant coffee', 98, null, null, false),
     ('Caffeine', '8 oz instant coffee', 130, null, null, false),
     ('Caffeine', '10 oz K-cup', 100, null, null, false),
-    ('Caffeine', '8 oz home brew', 95, null, null, true),
+    ('Caffeine', '8 oz home brew', 95, null, null, false),
     ('Caffeine', '6 oz chai latte', 60, null, null, false),
     ('Caffeine', '11.5 oz Yerba Mate (enlightenmint)', 115, null, null, false),
     ('Alcohol', 'Beer (12 oz, 5%)', null, 355, 5, false),
