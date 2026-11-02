@@ -1,12 +1,13 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import SleepLog from "./pages/SleepLog";
-import ConsumptionLog from "./pages/ConsumptionLog";
-import IncidentsLog from "./pages/IncidentsLog";
-import User from "./pages/User";
-import { LoginForm } from "./components/LoginForm";
-import { useAuth } from "./lib/use-auth";
+import Navbar from "@/components/Navbar";
+import Home from "@/pages/Home";
+import SleepLog from "@/pages/SleepLog";
+import ConsumptionLog from "@/pages/ConsumptionLog";
+import IncidentsLog from "@/pages/IncidentsLog";
+import User from "@/pages/User";
+import { LoginForm } from "@/components/LoginForm";
+import { useAuth } from "@/lib/use-auth";
+import { Toaster } from "@/components/ui/sonner";
 
 function Layout() {
     const { user, loading } = useAuth();
@@ -20,6 +21,7 @@ function Layout() {
 
     return (
         <>
+            <Toaster position="top-center" />
             <main>
                 <Outlet />
             </main>
